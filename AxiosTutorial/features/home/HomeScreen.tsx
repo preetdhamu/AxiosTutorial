@@ -10,7 +10,7 @@ const HomeScreen = () => {
   const [outerScrollEnabled, setOuterScrollEnabled] = useState(true);
   const outerScrollRef = useRef(null);
 
-  const handleOuterScroll = event => {
+  const handleOuterScroll = (event: any) => {
     const yOffset = event.nativeEvent.contentOffset.y;
     const contentHeight = event.nativeEvent.contentSize.height;
     const layoutHeight = event.nativeEvent.layoutMeasurement.height;

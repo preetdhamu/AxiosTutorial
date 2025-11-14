@@ -8,8 +8,9 @@ import {
   Image,
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBookmark, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../../constants/color';
+import ProfileRowSection from './ProfileRowSection';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CARD_WIDTH = Math.round(SCREEN_WIDTH * 0.6); // 60% of screen width
@@ -61,20 +62,7 @@ const PopularNewSection = () => {
                   <Text style={styles.timeText}>2 Hours ago</Text>
                 </View>
 
-                <View style={styles.profileRow}>
-                  <Image
-                    source={require('../../../../assets/images/girlBItmoji.png')}
-                    style={styles.profileImage}
-                    resizeMode="contain"
-                  />
-                  <View style={styles.saveCircle}>
-                    <FontAwesomeIcon
-                      icon={faBookmark}
-                      size={12}
-                      color={colors.secondary}
-                    />
-                  </View>
-                </View>
+                <ProfileRowSection/>
               </View>
 
               <Text style={styles.categoryText}>Sport</Text>
@@ -172,31 +160,6 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: '700',
     color: colors.secondary,
-  },
-
-  profileRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'relative',
-  },
-
-  profileImage: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-  },
-
-  saveCircle: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    borderColor: 'black',
-    borderWidth: 1,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    left: -15,
   },
 
   categoryText: {
