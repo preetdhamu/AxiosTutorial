@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
-import TextField from '../../../util/TextField';
+import TextField from '../../../../util/TextField';
 
 const SearchSection = () => {
   const [searchText, setSearchText] = useState('');

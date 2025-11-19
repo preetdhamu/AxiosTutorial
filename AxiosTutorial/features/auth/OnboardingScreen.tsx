@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet , Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../constants/color';
 import color from '../../constants/color';
 import AnimatedCircularButton from './components/AnimatedCircularButton';
+
 function OnboardingScreen() {
   return (
     <SafeAreaProvider>

@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 8,
-    color: color.placeHolderColor,
+    // color: color.placeHolderColor,
   },
   input: {
     flex: 1,

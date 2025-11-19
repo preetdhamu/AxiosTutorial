@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import LottieView from "lottie-react-native";
 
 interface TabLottieIconProps {
@@ -8,24 +8,24 @@ interface TabLottieIconProps {
 }
 
 const TabLottieIcon: React.FC<TabLottieIconProps> = ({ focused, file, size = 40 }) => {
-  const animationRef = useRef<LottieView>(null);
+  // const animationRef = useRef<LottieView>(null);
 
-  useEffect(() => {
-    if (!animationRef.current) return;
+  // useEffect(() => {
+  //   if (!animationRef.current) return;
 
-    if (focused) {
-      animationRef.current.play(0, 120);
-    } else {
-      animationRef.current.play(120, 120);
-    }
-  }, [focused]);
-
+  //   if (focused) {
+  //     animationRef.current.play(0, 120);
+  //   } else {
+  //     animationRef.current.play(120, 120);
+  //   }
+  // }, [focused]);
+  console.log("Rendering TabLottieIcon - focused:", focused);
   return (
     <LottieView
-      ref={animationRef}
+      // ref={animationRef}
       source={file}
-      autoPlay={true}
-      loop={true}
+      autoPlay={false}
+      loop={false}
       style={{ width: size, height: size }}
     />
   );

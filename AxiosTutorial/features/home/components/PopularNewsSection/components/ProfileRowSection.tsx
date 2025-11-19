@@ -1,18 +1,21 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View , Image} from 'react-native';
 import React from 'react';
 import { faBookmark } from '@fortawesome/free-regular-svg-icons/faBookmark';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import colors from '../../../constants/color';
 const ProfileRowSection = () => {
   return (
     <View style={styles.profileRow}>
       <Image
-        source={require('../../../../assets/images/girlBItmoji.png')}
+        source={require('../../../../../../assets/images/girlBItmoji.png')}
         style={styles.profileImage}
         resizeMode="contain"
       />
       <View style={styles.saveCircle}>
-        <FontAwesomeIcon icon={faBookmark} size={12} color={colors.secondary} />
+        <FontAwesomeIcon 
+        icon={faBookmark as any} 
+        size={12} 
+        // color={colors.secondary} 
+        />
       </View>
     </View>
   );

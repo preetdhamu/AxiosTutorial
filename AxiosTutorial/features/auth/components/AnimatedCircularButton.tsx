@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Pressable, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -12,18 +12,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Svg, Circle } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../App';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function AnimatedCircularButton() {
-  const [rotated, setRotated] = useState(false);
   const rotation = useSharedValue(270);
   const circleProgress = useSharedValue(0);
 
   const radius = 27;
   const strokeWidth = 3;
   const circumference = 2 * Math.PI * radius;
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
   
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],
@@ -45,7 +46,6 @@ export default function AnimatedCircularButton() {
   }));
 
   const handlePress = () => {
-    setRotated(true);
     rotation.value = withTiming(360, {
       duration: 1600,
       easing: Easing.inOut(Easing.ease),
@@ -100,9 +100,10 @@ export default function AnimatedCircularButton() {
       {/* Arrow inside */}
       <Animated.View style={animatedStyle}>
         <FontAwesomeIcon
-          icon={faArrowRight}
+          icon={faArrowRight as any}
           size={18}
-          color={rotated ? '#FFF' : '#000'}
+          // style={{ backgroundColor :  rotated ? '#FFF' : '#000'}}
+          // color={rotated ? '#FFF' : '#000'}
         />
       </Animated.View>
     </Pressable>
