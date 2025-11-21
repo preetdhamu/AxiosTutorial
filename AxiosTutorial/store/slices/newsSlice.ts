@@ -1,7 +1,9 @@
 // newsSlice.ts
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NewsCache, NewsItem } from "../../types/newsTypes";
+import { NewsCache } from "../../features/home/models/NewsCache";
+import { NewsItem } from "../../features/home/models/NewsItem";
+
 
 interface NewsState {
   topHeadlines: NewsCache | null;
@@ -36,7 +38,7 @@ const newsSlice = createSlice({
 
     setCategoryNews: (
       state,
-      action: PayloadAction<{ category: string; results: NewsItem[]; nextPage?: string; }>
+      action: PayloadAction<{ category: string; results: NewsItem[]; nextPage?: string |  null; }>
     ) => {
 
       const { category, results, nextPage } = action.payload;

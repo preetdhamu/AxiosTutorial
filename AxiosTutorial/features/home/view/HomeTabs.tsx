@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import { Text, View } from 'react-native';
-import TabLottieIcon from '../../util/TabLottieIcon';
+import TabLottieIcon from '../../../util/TabLottieIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,9 +29,8 @@ const HomeTab = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <TabLottieIcon
-              focused={focused}
-              file={require('../../../assets/lottie/Home.json')}
-              size={30}
+              file={require('../../../../assets/lottie/Home.json')}
+              size={23}
             />
           ),
         }}
@@ -43,9 +42,8 @@ const HomeTab = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <TabLottieIcon
-              focused={focused}
-              file={require('../../../assets/lottie/Profile.json')}
-              size={35}
+              file={require('../../../../assets/lottie/Profile.json')}
+              size={30}
             />
           ),
         }}
@@ -56,9 +54,8 @@ const HomeTab = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <TabLottieIcon
-              focused={focused}
-              file={require('../../../assets/lottie/BookMark.json')}
-              size={30}
+              file={require('../../../../assets/lottie/BookMark.json')}
+              size={25}
             />
           ),
         }}
@@ -70,9 +67,8 @@ const HomeTab = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <TabLottieIcon
-              focused={focused}
-              file={require('../../../assets/lottie/Compass.json')}
-              size={45}
+              file={require('../../../../assets/lottie/Compass.json')}
+              size={35}
             />
           ),
         }}

@@ -1,9 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistConfig } from "./persistConfig";
 import newsReducer from "./slices/newsSlice";
 import { persistReducer, persistStore } from "redux-persist";
 
-const rootReducer = persistReducer(persistConfig, newsReducer);
+
+
+
+const combinedReducer = combineReducers({
+  news: newsReducer,  
+});
+
+const rootReducer = persistReducer(persistConfig, combinedReducer);
+
 
 export const store = configureStore({
   reducer: rootReducer,

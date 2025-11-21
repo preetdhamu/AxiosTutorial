@@ -1859,7 +1859,7 @@
 
 "@shopify/flash-list@^2.2.0":
   version "2.2.0"
-  resolved "https://registry.npmjs.org/@shopify/flash-list/-/flash-list-2.2.0.tgz"
+  resolved "https://registry.npmjs.org/@shopify/flash-list/-/flash-list-2.2.0.tgz#bafd714576182681cba25fb13195dee19f5ca521"
   integrity sha512-mL61IofcfBNRZ/qazIf+pghGULkcZUQ7EZNldH1JBbIjtDb25ADSiQrt62ZTnRz0H5+bPFEZUmN9+WChHzX8pw==
 
 "@sideway/address@^4.1.5":

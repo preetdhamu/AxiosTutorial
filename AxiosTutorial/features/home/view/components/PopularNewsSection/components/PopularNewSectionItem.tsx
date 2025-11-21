@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { NewsItem } from '../../../../../types/newsTypes';
-import  toTitleCase  from '../../../../../util/TitleCaseHelper';
+
+import toTitleCase from '../../../../../../util/TitleCaseHelper';
 import { CARD_WIDTH, styles } from '../PopularNewSection';
-import { Text, View  , Image} from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import ProfileRowSection from './ProfileRowSection';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { NewsItem } from '../../../../models/NewsItem';
 
 export const PopularNewSectionItem = ({
   item,
@@ -38,12 +39,12 @@ export const PopularNewSectionItem = ({
       <Image
         source={
           errorIndexes.includes(index)
-            ? require('../../../../../../assets/images/defaultImage.png')
+            ? require('../../../../../../../assets/images/defaultImage.png')
             : { uri: imageUrl }
         }
         style={styles.image}
         resizeMode="cover"
-        defaultSource={require('../../../../../../assets/images/defaultImage.png')}
+        defaultSource={require('../../../../../../../assets/images/defaultImage.png')}
         onError={() => setErrorIndexes(prev => [...prev, index])}
       />
 
@@ -51,7 +52,7 @@ export const PopularNewSectionItem = ({
         <View style={styles.overlayHeader}>
           <View style={styles.timeRow}>
             <FontAwesomeIcon
-              icon={faClock as any }
+              icon={faClock as any}
               size={12}
               // color={ colors.secondary}
             />

@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { use } from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   FlatList,
   StyleSheet,
@@ -8,82 +7,59 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import colors from '../../../../constants/color';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import colors from '../../../../../constants/color';
 import { PopularNewSectionItem } from './components/PopularNewSectionItem';
 import PopularNewSectionShimmer from './components/PopularNewSectionShimmer';
-import { setTopHeadlines } from '../../../../store/slices/newsSlice';
-import { getTopHeadLines } from '../../../../api/newsApi';
-import { useNavigation } from '@react-navigation/native';
 import HeaderSection from '../HeaderSection/HeaderSection';
-import ContentCardList from '../CategoryNewsSection/components/ContentCardList';
 import { FlashList } from '@shopify/flash-list';
 import ContentCardListShimmer from '../CategoryNewsSection/components/ContentCardListShimmer';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../../App';
-import CommonErrorDialog from '../../../../util/CommonErrorDialog';
+import { NewsCache } from '../../../models/NewsCache';
+import PopularNewsSectionItemShimmer from './components/PopularNewsSectionItemShimmer';
+import ContentCardList from '../CategoryNewsSection/components/ContentCardList';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 export const CARD_WIDTH = Math.round(SCREEN_WIDTH * 0.6);
 
-const PopularNewSection = ({
+export interface HomeNewsProps {
+  useNewHeader?: boolean;
+  topHeadlines: NewsCache | null;
+  loadMoreTopNews: () => void;
+  onSeeAll?: () => void;
+  goBack?: () => void;
+}
+
+const PopularNewSection: React.FC<HomeNewsProps> = ({
   useNewHeader = false,
-}: {
-  useNewHeader: boolean;
+  topHeadlines,
+  loadMoreTopNews,
+  onSeeAll,
+  goBack,
 }) => {
-  const dispatch = useDispatch();
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [loadingMore, setLoadingMore] = useState(false);
-
-  const topHeadlines = useSelector((state: RootState) => state.topHeadlines);
+  const articles = topHeadlines?.results ?? [];
   const nextPageToken = topHeadlines?.nextPage ?? null;
-  const [error, setError] = useState<string | null>(null);
+  const isLoading =
+    !topHeadlines ||
+    (topHeadlines.results.length === 0 && !topHeadlines.nextPage);
 
-  const articles = useMemo(() => {
-    if (!topHeadlines || !topHeadlines.results) return [];
-    return topHeadlines.results;
-  }, [topHeadlines]);
 
-  const isLoading = !articles.length;
-
-  const loadMore = async () => {
-    if (!nextPageToken || loadingMore) return;
-    try {
-      setLoadingMore(true);
-      const response = await getTopHeadLines({ page: nextPageToken });
-      const data = response.data;
-
-      dispatch(
-        setTopHeadlines({
-          status: data.status,
-          totalResults: data.totalResults,
-          results: data.results,
-          nextPage: data.nextPage,
-          cachedAt: Date.now(),
-        }),
-      );
-    } catch (err : any) {
-      console.log('Error loading more news:', err);
-      setError(err.message || 'Something went wrong while fetching top news.');
-    } finally {
-      setLoadingMore(false);
-    }
-  };
+   const renderItem = ({ item, index }: { item: any; index: number }) => (
+    <View style={styles.renderItem}>
+      <ContentCardList item={item} index={index} />
+    </View>
+  );
 
   if (useNewHeader) {
     return (
-      <View style={styles.popularSection}>
+      <View style={[styles.popularSection, { flex: 1  , paddingVertical :useNewHeader ? 0 :  22 , paddingHorizontal : useNewHeader ? 0 : 12   , paddingBottom : useNewHeader ?  12 : 0  }]}>
         <HeaderSection
           title="Popular Section"
           showBackAction
-          onBackPress={() => navigation.goBack()}
+          onBackPress={goBack}
         />
 
         {isLoading ? (
           <View style={{ paddingVertical: 16 }}>
-            {Array(5)
+            {Array(3)
               .fill(0)
               .map((_, i) => (
                 <ContentCardListShimmer key={i} />
@@ -92,11 +68,9 @@ const PopularNewSection = ({
         ) : (
           <FlashList
             data={articles}
-            renderItem={({ item, index }) => (
-              <ContentCardList item={item} index={index} />
-            )}
+            renderItem={renderItem}
             keyExtractor={item => item.article_id}
-            onEndReached={loadMore}
+            onEndReached={loadMoreTopNews}
             onEndReachedThreshold={0.5}
             ListFooterComponent={
               nextPageToken ? (
@@ -111,11 +85,6 @@ const PopularNewSection = ({
             }
           />
         )}
-        <CommonErrorDialog
-  visible={!!error}
-  message={error || ''}
-  onClose={() => setError(null)}
-/>
       </View>
     );
   }
@@ -124,7 +93,7 @@ const PopularNewSection = ({
     <View style={styles.popularSection}>
       <View style={styles.headerRow}>
         <Text style={styles.sectionTitle}>Popular Now</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('PopularNews')}>
+        <TouchableOpacity onPress={onSeeAll}>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
@@ -141,27 +110,13 @@ const PopularNewSection = ({
           )}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingRight: 16 }}
-          getItemLayout={(data, index) => ({
-            length: CARD_WIDTH + 12,
-            offset: (CARD_WIDTH + 12) * index,
-            index,
-          })}
-          onEndReached={loadMore}
+          onEndReached={loadMoreTopNews}
           onEndReachedThreshold={0.5}
           ListFooterComponent={
-            nextPageToken ? (
-              <View style={styles.loaderDesign}>
-                <ActivityIndicator size="small" color={colors.primary} />
-              </View>
-            ) : null
+            nextPageToken ? <PopularNewsSectionItemShimmer /> : null
           }
         />
       )}
-      <CommonErrorDialog
-  visible={!!error}
-  message={error || ''}
-  onClose={() => setError(null)}
-/>
     </View>
   );
 };
@@ -171,8 +126,9 @@ export default PopularNewSection;
 export const styles = StyleSheet.create({
   popularSection: {
     paddingHorizontal: 16,
-    paddingTop: 22,
+    paddingVertical: 22,
   },
+  renderItem: { paddingHorizontal: 16 },
   loaderDesign: {
     paddingVertical: 16,
     alignItems: 'center',
@@ -241,7 +197,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
   },
-
 
   timeText: {
     fontFamily: 'OpenSans-Regular',

@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons'; // vacant bell icon
-import colors from '../../../../constants/color';
+import colors from '../../../../../constants/color';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 const HeaderSection = ({
   title = 'NewsFeed',
@@ -11,24 +11,32 @@ const HeaderSection = ({
 }) => {
   return (
     <View style={styles.header}>
-    
       {showBackAction && (
-         <View style={styles.defaultBoxes}>
-    <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
-      <FontAwesomeIcon icon={faChevronLeft as any } size={20} color="black" />
-    </TouchableOpacity>
-    </View>
-  )}
-   
+        <View style={styles.defaultBoxes}>
+          <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+            <FontAwesomeIcon
+              icon={faChevronLeft as any}
+              size={20}
+              color="black"
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+
       <View style={styles.defaultBoxes}>
-        <Text style={[styles.headerTitle , { borderLeftWidth : showBackAction ? 0  : 2}]}>{title}</Text>
+        <Text
+          style={[
+            styles.headerTitle,
+            { borderLeftWidth: showBackAction ? 0 : 2 },
+          ]}
+        >
+          {title}
+        </Text>
       </View>
 
-      
-
-      <View style={[styles.trailingIcon , styles.defaultBoxes]}>
+      <View style={[styles.trailingIcon, styles.defaultBoxes]}>
         <FontAwesomeIcon
-          icon={faBell as any }
+          icon={faBell as any}
           size={20}
           // color={colors.placeHolderColor}
         />
@@ -46,13 +54,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    alignContent : 'center'
+    paddingBottom : 12 , 
+    alignContent: 'center',
+    
   },
   backButton: {
     paddingRight: 0,
   },
-  defaultBoxes : { height : 40 , justifyContent : 'center' , alignItems : 'center'  },
+  defaultBoxes: { height: 40, justifyContent: 'center', alignItems: 'center' },
   headerTitle: {
     fontFamily: 'OpenSans-ExtraBold',
     fontSize: 16,
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+
   notificationDot: {
     position: 'absolute',
     top: 2,

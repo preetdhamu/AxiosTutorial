@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
-import TextField from '../../../../util/TextField';
+import TextField from '../../../../../util/TextField';
 
 const SearchSection = () => {
   const [searchText, setSearchText] = useState('');
@@ -8,11 +8,11 @@ const SearchSection = () => {
   return (
     <View style={styles.searchSection}>
       <Text style={styles.searchMainTitle}>Discover Breaking News</Text>
-     <TextField
+      <TextField
         placeholder="Search all events..."
         value={searchText}
         onChangeText={setSearchText}
-        placeholderSize = {14}
+        placeholderSize={14}
         onCancel={() => console.log('Search cleared')}
         showCancel={true}
         showBorder={true}
