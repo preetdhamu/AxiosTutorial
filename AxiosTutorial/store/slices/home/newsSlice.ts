@@ -1,8 +1,8 @@
 // newsSlice.ts
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NewsCache } from "../../features/home/models/NewsCache";
-import { NewsItem } from "../../features/home/models/NewsItem";
+import { NewsCache } from "../../../features/home/models/NewsCache";
+import { NewsItem } from "../../../features/home/models/NewsItem";
 
 
 interface NewsState {
@@ -12,7 +12,7 @@ interface NewsState {
   lastUpdatedCategory: Record<string, number>;
 }
 
-const initialState: NewsState = {
+export const initialState: NewsState = {
   topHeadlines: null,
   categories: {},
   lastUpdatedTop: null,
@@ -23,9 +23,10 @@ const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setTopHeadlines: (state, action: PayloadAction<NewsCache>) => {
+    setTopHeadlines: (state, action: PayloadAction<NewsCache & { isRefresh?: boolean }>) => {
       const newData = action.payload;
-      if (!state.topHeadlines) {
+      const isRefresh = newData.isRefresh ?? false;
+      if (!state.topHeadlines || isRefresh) {
         state.topHeadlines = newData;
       } else {
         state.topHeadlines.results.push(...newData.results);
@@ -38,13 +39,13 @@ const newsSlice = createSlice({
 
     setCategoryNews: (
       state,
-      action: PayloadAction<{ category: string; results: NewsItem[]; nextPage?: string |  null; }>
+      action: PayloadAction<{ category: string; results: NewsItem[]; nextPage?: string | null; isRefresh?: boolean; }>
     ) => {
 
-      const { category, results, nextPage } = action.payload;
+      const { category, results, nextPage, isRefresh } = action.payload;
 
       console.log("State is : inside the Before Set Category ?>>>>>>", state);
-      if (!state.categories[category]) {
+      if (!state.categories[category] || isRefresh) {
         state.categories[category] = {
           status: "success",
           totalResults: results.length,

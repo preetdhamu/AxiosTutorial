@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
-import Shimmer from '../../../../../../util/Shimmer';
-import { CARD_WIDTH, styles as mainStyles } from '../PopularNewSection';
+import { FlatList } from 'react-native';
+
+import {  styles as mainStyles } from '../PopularNewSection';
 import PopularNewsSectionItemShimmer from './PopularNewsSectionItemShimmer';
 
 const SHIMMER_COUNT = 5;

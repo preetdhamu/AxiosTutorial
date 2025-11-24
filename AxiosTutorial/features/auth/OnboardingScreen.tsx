@@ -5,8 +5,19 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../constants/color';
 import color from '../../constants/color';
 import AnimatedCircularButton from './components/AnimatedCircularButton';
+import { finishOnBoarding } from '../../store/slices/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
-function OnboardingScreen() {
+function OnboardingScreen({ navigation } :  any) {
+  
+   const dispatch = useDispatch();
+
+   const completeOnBoarding = () => {
+    dispatch(finishOnBoarding())
+    navigation.replace("Login");
+   }  
+  
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.safeArea}>
@@ -36,7 +47,7 @@ function OnboardingScreen() {
                 quickly and easily from a single platform.
               </Text>
 
-              <AnimatedCircularButton />
+              <AnimatedCircularButton onTap={completeOnBoarding}/>
             </View>
           </LinearGradient>
         </View>

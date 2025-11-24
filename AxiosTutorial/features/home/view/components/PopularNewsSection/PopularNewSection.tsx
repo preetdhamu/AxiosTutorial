@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, {  useCallback } from 'react';
 import {
   Dimensions,
   FlatList,
@@ -42,11 +42,15 @@ const PopularNewSection: React.FC<HomeNewsProps> = ({
     (topHeadlines.results.length === 0 && !topHeadlines.nextPage);
 
 
-   const renderItem = ({ item, index }: { item: any; index: number }) => (
+
+  const renderItem = useCallback(
+  ({ item, index } : { item : any , index :number}) => (
     <View style={styles.renderItem}>
       <ContentCardList item={item} index={index} />
     </View>
-  );
+  ),
+  []
+);
 
   if (useNewHeader) {
     return (
@@ -58,7 +62,7 @@ const PopularNewSection: React.FC<HomeNewsProps> = ({
         />
 
         {isLoading ? (
-          <View style={{ paddingVertical: 16 }}>
+          <View style={styles.shimmerPadding}>
             {Array(3)
               .fill(0)
               .map((_, i) => (
@@ -74,7 +78,7 @@ const PopularNewSection: React.FC<HomeNewsProps> = ({
             onEndReachedThreshold={0.5}
             ListFooterComponent={
               nextPageToken ? (
-                <View style={{ paddingVertical: 16 }}>
+                <View style={styles.shimmerPadding}>
                   {Array(5)
                     .fill(0)
                     .map((_, i) => (
@@ -149,6 +153,8 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'black',
   },
+    
+ shimmerPadding : { paddingTop : 10 , paddingHorizontal: 16    },
 
   seeAll: {
     fontFamily: 'OpenSans-Regular',

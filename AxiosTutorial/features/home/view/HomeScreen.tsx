@@ -21,9 +21,7 @@ import { NewsVMContext } from "../context/NewsViewModelProvider";
 const HomeScreen = ({ navigation }: any) => {
   const vm = useContext(NewsVMContext);
 
-  // ---------------------------
-  // SECTIONS
-  // ---------------------------
+  
   const sections = useMemo(() => {
     return [
       {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { getNewsByCategory, getTopHeadLines } from "../../../api/newsApi";
 import { NewsCache } from "../models/NewsCache";
-import { setCategoryNews, setTopHeadlines } from "../../../store/slices/newsSlice";
+import { setCategoryNews, setTopHeadlines } from "../../../store/slices/home/newsSlice";
 import { ScrollView } from "react-native";
 import { HomeViewModelReturn } from "../protocols/HomeViewModelReturn";
 
@@ -49,8 +49,8 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
     const nextPageTokenInTopHeadlines = topHeadlines?.nextPage ?? null;
 
     const scrollRef = useRef<ScrollView | null>(null);
-    
-    
+
+
 
     useEffect(() => {
         const index = tabs.indexOf(activeTab);
@@ -108,7 +108,7 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
 
 
 
-    const loadTopNews = useCallback(async () => {
+    const loadTopNews = useCallback(async (isReferesh: boolean = false) => {
         try {
             const response = await getTopHeadLines({ page: null });
             const data = response.data;
@@ -119,7 +119,7 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
                 nextPage: data.nextPage,
                 cachedAt: Date.now(),
             };
-            dispatch(setTopHeadlines(formatted));
+            dispatch(setTopHeadlines({ ...formatted, isRefresh: isReferesh }));
         } catch (err: any) {
             console.log("Error loading top headlines", err);
             setError(err.message || "Failed to load top headlines");
@@ -133,7 +133,7 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
 
 
     const loadCategoryNews = useCallback(
-        async (isLoadMore = false) => {
+        async (isLoadMore = false, isRefersh = false) => {
             if (loadingMore) return;
             if (isLoadMore && !nextPageToken) return;
 
@@ -149,6 +149,7 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
                         category: activeTab,
                         results: response.data.results,
                         nextPage: response.data.nextPage,
+                        isRefresh: isRefersh
                     })
                 );
             } catch (err: any) {
@@ -166,7 +167,7 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        await Promise.all([loadTopNews(), loadCategoryNews(false)]);
+        await Promise.all([loadTopNews(true), loadCategoryNews(false, true)]);
         setRefreshing(false);
     }, [loadTopNews, loadCategoryNews]);
 

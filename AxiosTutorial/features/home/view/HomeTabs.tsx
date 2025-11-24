@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import { Text, View } from 'react-native';
 import TabLottieIcon from '../../../util/TabLottieIcon';
+import ProfileScreen from '../../auth/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -63,7 +64,7 @@ const HomeTab = () => {
 
       <Tab.Screen
         name="Profile"
-        component={TestImage}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabLottieIcon

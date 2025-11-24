@@ -11,21 +11,22 @@ import Animated, {
   interpolateColor,
 } from 'react-native-reanimated';
 import { Svg, Circle } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../App';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-export default function AnimatedCircularButton() {
+interface AnimatedButtonProp {
+  onTap : ()=>void;
+}
+
+
+export default function AnimatedCircularButton({ onTap } : AnimatedButtonProp) {
   const rotation = useSharedValue(270);
   const circleProgress = useSharedValue(0);
 
   const radius = 27;
   const strokeWidth = 3;
   const circumference = 2 * Math.PI * radius;
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
-  
+
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],
   }));
@@ -57,7 +58,7 @@ export default function AnimatedCircularButton() {
     });
 
     setTimeout(() => {
-    navigation.navigate('Home');
+    onTap();
   }, 1600);
 
   };
