@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import toTitleCase from '../../../../../../util/TitleCaseHelper';
 import { CARD_WIDTH, styles } from '../PopularNewSection';
 import { Text, View, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import ProfileRowSection from './ProfileRowSection';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { NewsItem } from '../../../../models/NewsItem';
+import toTitleCase from '../../../../../../shared/components/TitleCaseHelper';
 
 export const PopularNewSectionItem = ({
   item,

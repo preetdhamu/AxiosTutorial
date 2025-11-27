@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Shimmer from '../../../../../../util/Shimmer';
+import Shimmer from '../../../../../../shared/components/Shimmer';
 
 const ContentCardListShimmer = () => {
   return (

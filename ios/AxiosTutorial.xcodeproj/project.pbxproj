@@ -15,6 +15,8 @@
 		B78DF573FA1B442BD34B0A89 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		C3ACAB407B994E568BB8975F /* OpenSans-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 498394D0C80944FE9162E939 /* OpenSans-VariableFont_wdth,wght.ttf */; };
 		C7192CC52EC3181800B04D92 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C7192CC42EC3181800B04D92 /* main.jsbundle */; };
+		C7FDEA0A2ED57A1E00B9D509 /* BiometricsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDEA082ED57A1E00B9D509 /* BiometricsModule.swift */; };
+		C7FDEA0B2ED57A1E00B9D509 /* BiometricsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FDEA092ED57A1E00B9D509 /* BiometricsModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AxiosTutorial/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		913A19426F1E486184C77560 /* OpenSans-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		C7192CC42EC3181800B04D92 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		C7FDEA082ED57A1E00B9D509 /* BiometricsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricsModule.swift; path = AxiosTutorial/BiometricsModule.swift; sourceTree = "<group>"; };
+		C7FDEA092ED57A1E00B9D509 /* BiometricsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BiometricsModule.m; path = AxiosTutorial/BiometricsModule.m; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -77,6 +81,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C7FDEA092ED57A1E00B9D509 /* BiometricsModule.m */,
+				C7FDEA082ED57A1E00B9D509 /* BiometricsModule.swift */,
 				13B07FAE1A68108700A75B9A /* AxiosTutorial */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -266,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7FDEA0A2ED57A1E00B9D509 /* BiometricsModule.swift in Sources */,
+				C7FDEA0B2ED57A1E00B9D509 /* BiometricsModule.m in Sources */,
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

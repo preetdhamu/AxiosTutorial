@@ -1,0 +1,18 @@
+{
+  "login": {
+    "title": "वापस स्वागत है",
+    "subtitle": "जारी रखने के लिए लॉगिन करें",
+    "placeholder": {
+      "email": "ईमेल",
+      "password": "पासवर्ड"
+    },
+    "buttons": {
+      "emailLogin": "ईमेल से लॉगिन करें",
+      "google": "Google के साथ जारी रखें",
+      "facebook": "Facebook के साथ जारी रखें"
+    },
+    "or": "या",
+    "skip": "फिलहाल छोड़ें →",
+    "loading": "लॉगिन हो रहा है..."
+  }
+}

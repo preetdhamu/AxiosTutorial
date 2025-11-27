@@ -6,7 +6,7 @@ const ProfileRowSection = () => {
   return (
     <View style={styles.profileRow}>
       <Image
-        source={require('../../../../../../../assets/images/girlBItmoji.png')}
+        source={require('../../../../../../../assets//images/girlBItmoji.png')}
         style={styles.profileImage}
         resizeMode="contain"
       />

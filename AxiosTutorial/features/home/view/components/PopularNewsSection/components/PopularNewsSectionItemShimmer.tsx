@@ -1,7 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import Shimmer from '../../../../../../util/Shimmer';
+
 import { CARD_WIDTH, styles as mainStyles } from '../PopularNewSection';
+import Shimmer from '../../../../../../shared/components/Shimmer';
 
 const PopularNewsSectionItemShimmer = () => {
   return (

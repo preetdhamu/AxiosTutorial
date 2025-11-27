@@ -1,9 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './HomeScreen';
-import { Text, View } from 'react-native';
-import TabLottieIcon from '../../../util/TabLottieIcon';
-import ProfileScreen from '../../auth/ProfileScreen';
+import HomeScreen from './components/HomeScreen';
+import ProfileScreen from '../../auth/view/ProfileScreen';
+import colors from '../../../constants/color';
+import TabLottieIcon from '../../../shared/components/TabLottieIcon';
+import UnderConstruction from '../../../shared/components/UnderConstruction';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,11 @@ const HomeTab = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 45,
-          backgroundColor: '#fff',
+          backgroundColor: colors.cardUpperLayer,
+          shadowColor: colors.lightSecondary,
+          // shadowOffset : { width : 0 , height : -3 },
+          shadowOpacity: 0.65,
+          shadowRadius: 6,
           position: 'absolute',
           bottom: 20,
           marginHorizontal: 20,
@@ -28,7 +33,7 @@ const HomeTab = () => {
         name="MainHome"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: () => (
             <TabLottieIcon
               file={require('../../../../assets/lottie/Home.json')}
               size={23}
@@ -39,9 +44,9 @@ const HomeTab = () => {
 
       <Tab.Screen
         name="Discover"
-        component={TestImage}
+        component={()=><UnderConstruction  titleName='Discover'/>}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: () => (
             <TabLottieIcon
               file={require('../../../../assets/lottie/Profile.json')}
               size={30}
@@ -51,9 +56,9 @@ const HomeTab = () => {
       />
       <Tab.Screen
         name="BookMark"
-        component={TestImage}
+        component={()=><UnderConstruction  titleName='BookMark'/>}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: () => (
             <TabLottieIcon
               file={require('../../../../assets/lottie/BookMark.json')}
               size={25}
@@ -66,7 +71,7 @@ const HomeTab = () => {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: () => (
             <TabLottieIcon
               file={require('../../../../assets/lottie/Compass.json')}
               size={35}
@@ -80,10 +85,3 @@ const HomeTab = () => {
 
 export default HomeTab;
 
-const TestImage = () => {
-  return (
-    <View>
-      <Text>TestImage</Text>
-    </View>
-  );
-};

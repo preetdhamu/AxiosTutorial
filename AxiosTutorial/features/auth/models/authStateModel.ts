@@ -6,4 +6,8 @@ export interface AuthState {
   loading: boolean;
   error: string | null;
   firstLaunch: boolean;
+  isAppLockedEnabled: boolean;
+ 
 }
+
+

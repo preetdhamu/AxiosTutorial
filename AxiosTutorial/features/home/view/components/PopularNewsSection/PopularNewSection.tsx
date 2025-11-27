@@ -1,4 +1,4 @@
-import React, {  useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
   Dimensions,
   FlatList,
@@ -10,7 +10,7 @@ import {
 import colors from '../../../../../constants/color';
 import { PopularNewSectionItem } from './components/PopularNewSectionItem';
 import PopularNewSectionShimmer from './components/PopularNewSectionShimmer';
-import HeaderSection from '../HeaderSection/HeaderSection';
+import HeaderSection from '../../../../../shared/components/HeaderSection';
 import { FlashList } from '@shopify/flash-list';
 import ContentCardListShimmer from '../CategoryNewsSection/components/ContentCardListShimmer';
 import { NewsCache } from '../../../models/NewsCache';
@@ -41,20 +41,28 @@ const PopularNewSection: React.FC<HomeNewsProps> = ({
     !topHeadlines ||
     (topHeadlines.results.length === 0 && !topHeadlines.nextPage);
 
-
-
   const renderItem = useCallback(
-  ({ item, index } : { item : any , index :number}) => (
-    <View style={styles.renderItem}>
-      <ContentCardList item={item} index={index} />
-    </View>
-  ),
-  []
-);
+    ({ item, index }: { item: any; index: number }) => (
+      <View style={styles.renderItem}>
+        <ContentCardList item={item} index={index} />
+      </View>
+    ),
+    [],
+  );
 
   if (useNewHeader) {
     return (
-      <View style={[styles.popularSection, { flex: 1  , paddingVertical :useNewHeader ? 0 :  22 , paddingHorizontal : useNewHeader ? 0 : 12   , paddingBottom : useNewHeader ?  12 : 0  }]}>
+      <View
+        style={[
+          styles.popularSection,
+          {
+            flex: 1,
+            paddingVertical: useNewHeader ? 0 : 22,
+            paddingHorizontal: useNewHeader ? 0 : 12,
+            paddingBottom: useNewHeader ? 12 : 0,
+          },
+        ]}
+      >
         <HeaderSection
           title="Popular Section"
           showBackAction
@@ -153,8 +161,8 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'black',
   },
-    
- shimmerPadding : { paddingTop : 10 , paddingHorizontal: 16    },
+
+  shimmerPadding: { paddingTop: 10, paddingHorizontal: 16 },
 
   seeAll: {
     fontFamily: 'OpenSans-Regular',

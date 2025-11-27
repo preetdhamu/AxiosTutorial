@@ -1,12 +1,14 @@
 // viewModel/newsViewModel.ts
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+import { RootState } from "../../../shared/store/store";
 import { getNewsByCategory, getTopHeadLines } from "../../../api/newsApi";
 import { NewsCache } from "../models/NewsCache";
-import { setCategoryNews, setTopHeadlines } from "../../../store/slices/home/newsSlice";
+
 import { ScrollView } from "react-native";
-import { HomeViewModelReturn } from "../protocols/HomeViewModelReturn";
+import { HomeViewModelReturn } from "../models/HomeViewModelReturn";
+import { useSnackbar } from "../../../shared/context/SnackbarContext";
+import { setCategoryNews, setTopHeadlines } from "../slice/newsSlice";
 
 
 
@@ -50,6 +52,16 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
 
     const scrollRef = useRef<ScrollView | null>(null);
 
+    const { showError } = useSnackbar();
+
+
+
+    useEffect(() => {
+        if (error) {
+            showError(error)
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [error]);
 
 
     useEffect(() => {
@@ -60,6 +72,9 @@ export const useNewsViewModel = (): HomeViewModelReturn => {
             }, 100);
         }
     }, [activeTab]);
+
+
+
 
 
     useEffect(() => {

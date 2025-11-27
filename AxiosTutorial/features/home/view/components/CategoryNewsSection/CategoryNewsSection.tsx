@@ -10,7 +10,7 @@ import {
 import ContentCardListShimmer from './components/ContentCardListShimmer';
 import colors from '../../../../../constants/color';
 import { tabs } from '../../../viewModel/HomeViewModel';
-import HeaderSection from '../HeaderSection/HeaderSection';
+import HeaderSection from '../../../../../shared/components/HeaderSection';
 
 interface Props {
   useNewHeader?: boolean;
@@ -32,7 +32,7 @@ const CategoryNewsSection: React.FC<Props> = ({
   goBack,
 }) => {
   return (
-    <View >
+    <View>
       {/* Header Row */}
 
       {useNewHeader ? (
@@ -90,7 +90,6 @@ const CategoryNewsSection: React.FC<Props> = ({
 export default CategoryNewsSection;
 
 const styles = StyleSheet.create({
- 
   tabText: {
     color: colors.placeHolderColor,
     fontSize: 14,
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 12,
-    paddingHorizontal : 16 ,
+    paddingHorizontal: 16,
     backgroundColor: colors.backgroundColor,
   },
   sectionTitle: {
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.cardUpperLayer,
     backgroundColor: colors.backgroundColor,
   },
-  renderItem: { 
-    paddingHorizontal: 16 
+  renderItem: {
+    paddingHorizontal: 16,
   },
 });

@@ -1,0 +1,18 @@
+{
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Login to continue",
+    "placeholder": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "buttons": {
+      "emailLogin": "Login with Email",
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook"
+    },
+    "or": "OR",
+    "skip": "Skip for now →",
+    "loading": "Logging in..."
+  }
+}
